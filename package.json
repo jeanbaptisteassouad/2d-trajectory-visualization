@@ -1,0 +1,35 @@
+{
+  "name": "2d-trajectory-visualization",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/main.js",
+  "author": "Jean-Baptiste Assouad <jean.baptiste@assouad.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack --env.DEV=true --watch --progress --mode development",
+    "test": "env NODE_PATH=$NODE_PATH:$PWD/src mocha --require babel-register \"./src/**/*.test.js\"",
+    "testOne": "mocha"
+  },
+  "devDependencies": {
+    "tail": "2.0.3",
+    "chai": "4.2.0",
+    "mocha": "6.1.4",
+    "babel-core": "6.26.0",
+    "babel-loader": "7.1.3",
+    "babel-preset-env": "1.6.1",
+    "babel-preset-react": "6.24.1",
+    "copy-webpack-plugin": "4.5.1",
+    "html-webpack-plugin": "3.2.0",
+    "raw-loader": "1.0.0",
+    "webpack-dev-server": "3.1.1",
+    "webpack-cli": "2.0.4",
+    "webpack": "4.1.0"
+  },
+  "dependencies": {
+    "babel-polyfill": "6.26.0",
+    "gl-matrix": "3.0.0",
+    "react": "16.8.6",
+    "react-dom": "16.8.6",
+    "babel-plugin-transform-object-rest-spread" : "6.26.0"
+  }
+}
