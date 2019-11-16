@@ -17,6 +17,13 @@ const bound_rect = trajectories.map(Trajectory.getBoundRect)
   .reduce(BoundRect.compose, BoundRect.empty())
 const max_time = trajectories.map(Trajectory.getMaxTime)
   .reduce((acc, val) => Math.max(acc, val), -Infinity)
+const duration = trajectories.map(Trajectory.getDuration)
+  .reduce((acc, val) => Math.max(acc, val), -Infinity)
+const average_speed = (
+  trajectories
+    .map(Trajectory.getAverageSpeed)
+    .reduce((acc, val) => acc + val, 0)
+  ) / trajectories.length
 
 const getPoints = (time, trajectories) => {
   const points = trajectories.map(a=>Trajectory.getPoint(time, a))
@@ -41,6 +48,16 @@ const app = () => {
               bound_rect={bound_rect}
               max_time={max_time}
             />
+          </div>
+          <div className='cell small-2'>
+            <div className='grid-y align-center grid-padding-x' style={{height:'100%'}}>
+              <div className='cell small-shrink'>
+                {'Total duration : '+duration}
+              </div>
+              <div className='cell small-shrink'>
+                {'Average speed : '+average_speed}
+              </div>
+            </div>
           </div>
         </div>
       </div>

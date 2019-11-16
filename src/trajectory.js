@@ -79,9 +79,47 @@ const getMaxTime = (a) => {
   return Point.getTime(point)
 }
 
+// Trajectory -> Float
+const getDuration = (a) => {
+  const points = getPoints(a)
+
+  if (points.length < 2) {
+    return 0
+  }
+
+  return Point.getTime(points.slice(-1)[0]) - Point.getTime(points[0])
+}
+
+// Trajectory -> Float
+const getAverageSpeed = (a) => {
+  const points = getPoints(a)
+
+  if (points.length < 2) {
+    return 0
+  }
+
+  const speeds = []
+
+  for (let i = 0; i < points.length - 1; i++) {
+    const x = Point.getX(points[i + 1]) - Point.getX(points[i])
+    const y = Point.getY(points[i + 1]) - Point.getY(points[i])
+    const time = Point.getTime(points[i + 1]) - Point.getTime(points[i])
+
+    const dist = Math.pow(Math.pow(x,2) + Math.pow(y,2), 0.5)
+    const speed = dist / time
+
+    speeds.push(speed)
+  }
+
+  return speeds.reduce((acc, val) => acc+val, 0) / speeds.length
+}
+
 export const Trajectory = {
   fromJs,
   getPoint,
   getBoundRect,
   getMaxTime,
+
+  getDuration,
+  getAverageSpeed,
 }
