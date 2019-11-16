@@ -40,6 +40,7 @@ const compose = (a, b) => {
   return create(x_min, x_max, y_min, y_max)
 }
 
+// Float -> BoundRect -> Float
 const normalizeX = (x, a) => {
   const x_min = getXMin(a)
   const x_max = getXMax(a)
@@ -47,11 +48,28 @@ const normalizeX = (x, a) => {
   return (x - x_min) / (x_max - x_min)
 }
 
+// Float -> BoundRect -> Float
+const invNormalizeX = (x, a) => {
+  const x_min = getXMin(a)
+  const x_max = getXMax(a)
+
+  return x_min + (x_max - x_min) * x  
+}
+
+// Float -> BoundRect -> Float
 const normalizeY = (y, a) => {
   const y_min = getYMin(a)
   const y_max = getYMax(a)
 
   return (y - y_min) / (y_max - y_min)
+}
+
+// Float -> BoundRect -> Float
+const invNormalizeY = (y, a) => {
+  const y_min = getYMin(a)
+  const y_max = getYMax(a)
+
+  return y_min + (y_max - y_min) * y  
 }
 
 
@@ -61,5 +79,7 @@ export const BoundRect = {
   compose,
 
   normalizeX,
+  invNormalizeX,
   normalizeY,
+  invNormalizeY,
 }
